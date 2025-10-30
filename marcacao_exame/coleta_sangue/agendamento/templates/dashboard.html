@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="shortcut icon" href="../static/agendamento/images/hemope.jfif" type="image/x-icon" />
+  <title>Painel de Agendamentos</title>
+  <link rel="stylesheet" href="{% static 'agendamento/css/dashboard.css' %}" />
+</head>
+
+<body>
+  <div class="container">
+    <!-- Cabeçalho -->
+    <header class="header">
+      <h2>Painel de Agendamentos</h2>
+      <a href="{% url 'logout' %}" class="btn-logout">Sair</a>
+    </header>
+
+    <!-- Filtro por data, ano e mês -->
+    <section class="filtro-section">
+      <form method="GET" class="filtro-data">
+        <div class="filtro-bloco">
+          <label for="data">Filtrar por data:</label>
+          <input type="date" name="data" id="data" value="{{ data_filtro }}" />
+        </div>
+
+        <div class="filtro-bloco">
+          <label for="ano">Filtrar por ano:</label>
+          <select name="ano" id="ano">
+            <option value="">Selecione o ano</option>
+            {% for ano in anos %}
+              <option value="{{ ano }}" {% if ano_filtro == ano|stringformat:"s" %}selected{% endif %}>{{ ano }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="filtro-bloco">
+          <label for="mes">Filtrar por mês:</label>
+          <select name="mes" id="mes">
+            <option value="">Selecione o mês</option>
+            <option value="1" {% if mes_filtro == '1' %}selected{% endif %}>Janeiro</option>
+            <option value="2" {% if mes_filtro == '2' %}selected{% endif %}>Fevereiro</option>
+            <option value="3" {% if mes_filtro == '3' %}selected{% endif %}>Março</option>
+            <option value="4" {% if mes_filtro == '4' %}selected{% endif %}>Abril</option>
+            <option value="5" {% if mes_filtro == '5' %}selected{% endif %}>Maio</option>
+            <option value="6" {% if mes_filtro == '6' %}selected{% endif %}>Junho</option>
+            <option value="7" {% if mes_filtro == '7' %}selected{% endif %}>Julho</option>
+            <option value="8" {% if mes_filtro == '8' %}selected{% endif %}>Agosto</option>
+            <option value="9" {% if mes_filtro == '9' %}selected{% endif %}>Setembro</option>
+            <option value="10" {% if mes_filtro == '10' %}selected{% endif %}>Outubro</option>
+            <option value="11" {% if mes_filtro == '11' %}selected{% endif %}>Novembro</option>
+            <option value="12" {% if mes_filtro == '12' %}selected{% endif %}>Dezembro</option>
+          </select>
+        </div>
+
+        <div class="filtro-botoes">
+          <button type="submit">Filtrar</button>
+          <a href="{% url 'dashboard' %}" class="btn-limpar">Limpar filtro</a>
+        </div>
+      </form>
+    </section>
+
+    <!-- Tabela de Agendamentos -->
+    <section class="table-section">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Doador</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>Status</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for a in agendamentos %}
+          <tr class="{% if a.cancelado %}cancelado{% endif %}">
+            <td>{{ a.nome }}</td>
+            <td>{{ a.doador|yesno:"Sim,Não" }}</td>
+            <td>{{ a.email }}</td>
+            <td>{{ a.telefone }}</td>
+            <td>{{ a.data }}</td>
+            <td>{{ a.hora }}</td>
+            <td>
+              {% if a.cancelado %}
+                <span class="status-cancelado">Cancelado</span>
+              {% else %}
+                <span class="status-ativo">Ativo</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if not a.cancelado %}
+                <form method="POST" action="{% url 'cancelar_dashboard' a.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn-cancelar">Cancelar</button>
+                </form>
+              {% else %}
+                <span>-</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="8" class="empty">Nenhum agendamento encontrado</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </div>
+</body>
+
+</html>

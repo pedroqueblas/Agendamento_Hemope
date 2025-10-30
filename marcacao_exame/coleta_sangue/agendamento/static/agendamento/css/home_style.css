@@ -1,0 +1,150 @@
+:root {
+  --red-primary: #c70000;
+  --red-secondary: #ff4d4d;
+  --red-dark: #800000;
+  --background-light: #D7D2CB;
+  --text-dark: #2c2c2c;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estrutura principal */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container ocupa toda a tela menos o footer */
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100vh - 60px);
+}
+
+/* Título */
+.tittle {
+  text-align: center;
+  margin: 1rem;
+  flex-shrink: 0;
+}
+
+.tittle h1 {
+  font-size: 2rem;
+  color: var(--red-primary);
+}
+
+.tittle p {
+  font-size: 1.1rem;
+  max-width: 90%;
+  margin: 0.5rem auto;
+}
+
+/* Layout em colunas */
+.columns {
+  display: grid;
+  grid-template-columns: 1fr minmax(auto, 1fr) 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+  flex: 1;
+  align-items: start;
+  overflow: hidden;
+}
+
+/* Colunas */
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Cards */
+.card {
+  background-color: #FBFAF2;
+  border: 1px solid var(--text-dark);
+  border-radius: 12px;
+  padding: 5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+}
+
+.card h2 {
+  color: var(--red-primary);
+  font-size: 1.4rem;
+}
+
+.card p {
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+/* Ícones nos cards */
+.icon {
+  font-size: 4rem;
+  color: var(--red-primary);
+  margin-bottom: 1rem;
+}
+
+/* Botões */
+.btn {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+  color: white;
+  background-color: var(--red-primary);
+}
+
+.btn:hover {
+  background-color: var(--red-dark);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--red-primary);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .tittle p {
+    max-width: 95%;
+  }
+
+  .card {
+    padding: 2rem;
+  }
+}

@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="shortcut icon" href="{% static 'agendamento/images/hemope.jfif' %}" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agendamento Coleta</title>
+  <link rel="stylesheet" href="{% static 'agendamento/css/agendamento.css' %}" />
+</head>
+
+<body>
+  <div class="container">
+    <!-- Cards lado a lado -->
+    <div class="cards-wrapper">
+      <!-- CARD INFORMAÇÕES -->
+      <div class="card info-section">
+        <h3>Condições para ser doador de sangue</h3>
+        <ul>
+          <li>Homens e Mulheres com idade entre 18 e 60 anos 11 meses e 29 dias.</li>
+          <li>No caso de adolescente entre 16 e 18 anos incompletos é necessário o consentimento formal e presença dos
+            pais ou responsável legal durante o tempo de permanência do menor no Hemope.</li>
+          <li>O limite para a primeira doação é de 60 anos 11 meses e 29 dias. Acima desta idade só poderá doar quem já
+            era doador no hemope e até os 70 anos incompletos.</li>
+          <li>Respeitar os intervalos entre doações: mulheres 04 meses, homens 03 meses e maior de 61 anos, 02 vezes ao
+            ano.</li>
+          <li>Peso maior que 50kg, descontando o peso da vestimenta.</li>
+          <li>Ter dormido bem na noite anterior à doação</li>
+          <li>Não doar em jejum. Alimentar-se normalmente, uma refeição balanceada incluindo uma proteína e evitando
+            comidas gordurosas.</li>
+        </ul>
+        <!-- BOTÃO VOLTAR -->
+        <a href="{% url 'home' %}">
+          <button class="btn-voltar">Voltar</button>
+        </a>
+      </div>
+
+      <!-- CARD FORMULÁRIO -->
+      <div class="card form-section">
+        <h2>Agende seu exame</h2>
+        <form method="POST" id="form-agendamento">
+          {% csrf_token %}
+          <input type="text" name="nome" placeholder="Nome completo" required />
+          <input type="email" name="email" placeholder="E-mail" required />
+          <input type="tel" name="telefone" placeholder="Telefone" required />
+          <input type="date" name="data" id="data-agendamento" required />
+          <select name="hora" id="hora-agendamento" required>
+            <option value="">Selecione a data primeiro</option>
+          </select>
+          <select name="doador" required>
+            <option value="">É doador?</option>
+            <option value="True">Sim</option>
+            <option value="False">Não</option>
+          </select>
+          <button type="submit">Agendar</button>
+        </form>
+        <p class="mensagem" id="mensagem"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script JS -->
+  <script src="{% static 'agendamento/js/scriptagendamento.js' %}"></script>
+</body>
+
+</html>

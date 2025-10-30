@@ -1,0 +1,132 @@
+/* =======================
+   Reset e fontes
+   ======================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #fff5f5;
+    color: #2c2c2c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* =======================
+   Container central
+   ======================= */
+.container {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+}
+
+/* =======================
+   Card
+   ======================= */
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.card h2 {
+    color: #c70000;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+/* =======================
+   Lista de informações
+   ======================= */
+.card ul {
+    list-style-type: none;
+    margin: 15px 0;
+    padding: 0;
+}
+
+.card ul li {
+    background: #fff0f0;
+    border-left: 5px solid #c70000;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+/* =======================
+   Botões
+   ======================= */
+button {
+    background-color: #c70000;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 15px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #ff4d4d;
+    transform: translateY(-2px);
+}
+
+/* =======================
+   Mensagens de alerta
+   ======================= */
+p[style*="color:red"] {
+    color: #c70000;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* =======================
+   Links
+   ======================= */
+a {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+}
+
+a button {
+    background-color: #555;
+    margin-top: 10px;
+}
+
+a button:hover {
+    background-color: #777;
+}
+
+/* =======================
+   Responsivo
+   ======================= */
+@media (max-width: 500px) {
+    .card {
+        padding: 20px;
+    }
+    .card h2 {
+        font-size: 1.5rem;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+}

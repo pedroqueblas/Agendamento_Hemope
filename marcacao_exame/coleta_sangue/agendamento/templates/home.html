@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="../static/agendamento/images/hemope.jfif" type="image/x-icon" />
+  <title>HEMOPE</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'agendamento/css/home_style.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <div class="container">
+    <!-- Título -->
+    <header class="tittle">
+      <img src="../static/agendamento/images/logohemope.png" alt="">
+      <h1>Bem-vindo ao Sistema de Agendamento do Hemope</h1>
+      <p>Agende sua doação de sangue de forma rápida, prática e segura.</p>
+    </header>
+
+    <!-- Layout principal -->
+    <main class="columns">
+      <!-- Coluna Esquerda -->
+      <div class="col">
+        <div class="card carda">
+          <h2>Agendamento</h2>
+          <div class="icon">
+            <i class="fa-solid fa-calendar-plus"></i> <!-- Ícone de agendamento -->
+          </div>
+          <a href="{% url 'agendar' %}" class="btn btn-primary">
+            <i class="fa-solid fa-calendar-plus"></i> Agende já sua Doação
+          </a>
+        </div>
+      </div>
+
+      <!-- Coluna Central -->
+      <div class="col">
+        <div class="card location">
+          <h2>Localização</h2>
+          <div class="icon">
+            <i class="fa-solid fa-map-marker-alt"></i> <!-- Ícone de localização -->
+          </div>
+          <a href="https://www.google.com/maps/search/hemope/@-8.0478208,-34.897757,15z?entry=ttu&g_ep=EgoyMDI1MDkyNC4wIKXMDSoASAFQAw%3D%3D"
+             target="_blank" class="btn btn-primary">
+            <i class="fa-solid fa-map-marker-alt"></i> Ver Localização no Mapa
+          </a>
+        </div>
+      </div>
+
+      <!-- Coluna Direita -->
+      <div class="col">
+        <div class="card cardb">
+          <h2>Funcionarios</h2>
+          <div class="icon">
+            <i class="fa-solid fa-user"></i> <!-- Ícone de funcionários -->
+          </div>
+          <a href="{% url 'login' %}" class="btn btn-secondary">
+            <i class="fa-solid fa-list-check"></i> Consultar Agendamento
+          </a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Hemope - Todos os direitos reservados</p>
+  </footer>
+</body>
+</html>

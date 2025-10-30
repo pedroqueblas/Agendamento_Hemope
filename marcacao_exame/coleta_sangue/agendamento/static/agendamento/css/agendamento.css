@@ -1,0 +1,211 @@
+/* =====================================
+   Paleta de cores
+===================================== */
+:root {
+  --red-primary: #c70000;
+  --red-secondary: #ff4d4d;
+  --background-light: #D7D2CB;
+  --text-dark: #2c2c2c;
+  --input-border: #D6DDDE;
+  --input-focus: #c70000;
+  --button-shadow: rgba(199, 0, 0, 0.3);
+  --card-shadow: rgba(0, 0, 0, 0.08);
+}
+
+/* =====================================
+   Reset básico
+===================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", "Arial", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden; /* evita qualquer rolagem */
+}
+
+body {
+  background-color: var(--background-light);
+  color: var(--text-dark);
+  line-height: 2rem;
+  font-size: 1rem;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =====================================
+   Container principal
+===================================== */
+.container {
+  height: 100vh; /* ocupa a tela toda */
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  overflow: hidden; /* evita scroll interno */
+}
+
+/* =====================================
+   Wrapper dos cards
+===================================== */
+.cards-wrapper {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* =====================================
+   Card base
+===================================== */
+.card {
+  background-color: #fffaff;
+  flex: 1 1 48%;
+  min-width: 300px;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* =====================================
+   Card Info
+===================================== */
+.info-section h3 {
+  text-align: center;
+  color: var(--red-primary);
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.info-section p,
+.info-section ul {
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+.info-section ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.info-section li{
+  margin: 0.4rem;
+}
+
+/* =====================================
+   Card Form
+===================================== */
+.form-section h2 {
+  color: var(--red-primary);
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+input,
+select {
+  padding: 1rem 0.8rem;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: var(#2c2c2c);
+  transition: all 0.3s ease;
+  margin: 0.4rem;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--input-focus);
+  outline: none;
+  box-shadow: 0 0 6px rgba(199, 0, 0, 0.2);
+}
+
+button {
+  background-color: var(--red-primary);
+  color: #fff;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px var(--button-shadow);
+  margin-top: 1rem;
+}
+
+button:hover {
+  background-color: var(--red-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--button-shadow);
+}
+
+.mensagem {
+  color: var(--red-primary);
+  font-weight: 500;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* =====================================
+   Botão voltar
+===================================== */
+.btn-voltar {
+  margin-top: 1rem;
+  align-self: center;
+  margin-left: 40%;
+}
+
+/* =====================================
+   Responsividade
+===================================== */
+@media (max-width: 992px) {
+  body {
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .container {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .cards-wrapper {
+    flex-direction: column;
+  }
+
+  .card {
+    flex: 1 1 100%;
+    height: auto;
+    max-height: none;
+  }
+
+  input,
+  select,
+  button {
+    font-size: 0.85rem;
+    padding: 0.55rem 0.75rem;
+  }
+}

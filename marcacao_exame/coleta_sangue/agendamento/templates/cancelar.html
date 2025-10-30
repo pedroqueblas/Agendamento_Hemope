@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cancelar Agendamento</title>
+    <link rel="stylesheet" href="{% static 'agendamento/css/cancelar.css' %}">
+</head>
+<body>
+<div class="container">
+    <div class="card form-section">
+        <h2>Cancelar Agendamento</h2>
+        <p>Olá <b>{{ agendamento.nome }}</b>,</p>
+        <p>Você está prestes a cancelar seu agendamento para:</p>
+        <ul>
+            <li>Data: {{ agendamento.data }}</li>
+            <li>Hora: {{ agendamento.hora }}</li>
+        </ul>
+        {% if not agendamento.cancelado %}
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit">Confirmar Cancelamento</button>
+            </form>
+        {% else %}
+            <p style="color:red;">Este agendamento já foi cancelado.</p>
+        {% endif %}
+        <a href="{% url 'home' %}"><button>Voltar</button></a>
+    </div>
+</div>
+</body>
+</html>

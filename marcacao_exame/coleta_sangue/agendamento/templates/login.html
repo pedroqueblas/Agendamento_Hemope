@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="shortcut icon"
+      href="{% static 'agendamento/images/hemope.jfif' %}"
+      type="image/x-icon"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'agendamento/css/login.css' %}" />
+  </head>
+
+  <body>
+    <main class="login-container">
+      <section class="login-card">
+        <h2>Login</h2>
+
+        {% if error %}
+        <p class="error-msg">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST" class="login-form">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="username">Usuário</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Digite seu usuário"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Senha</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Digite sua senha"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn-login">Entrar</button>
+        </form>
+
+        <!-- BOTÃO VOLTAR -->
+        <a href="{% url 'home' %}">
+          <button class="btn-voltar">Voltar</button>
+        </a>
+      </section>
+    </main>
+
+    <!-- 🔐 Se já estiver logado, redireciona automaticamente -->
+    {% if user.is_authenticated %}
+    <script>
+      window.location.href = "{% url 'dashboard' %}";
+    </script>
+    {% endif %}
+
+    <!-- 🚪 Logout automático ao fechar a aba/navegador -->
+    <script>
+      window.addEventListener("beforeunload", function () {
+        navigator.sendBeacon("/logout/");
+      });
+    </script>
+  </body>
+</html>
